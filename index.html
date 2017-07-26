@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>评分</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_ebo0inqoawi2j4i.css">
+	<style type="text/css">
+		.iconfont{font-size: 30px;cursor: pointer;}
+		.add{color:red;}
+		.addgray{color:gray;}
+		#ss{display: inline-block;width: 50px;line-height: 30px;background: pink;border-radius:10px;text-align: center;font-weight:400;}
+	</style>
+</head>
+<body>
+	<b>请您评价：</b>
+	<span class="iconfont icon-wujiaoxing"></span>
+	<span class="iconfont icon-wujiaoxing"></span>
+	<span class="iconfont icon-wujiaoxing"></span>
+	<span class="iconfont icon-wujiaoxing"></span>
+	<span class="iconfont icon-wujiaoxing"></span>
+	<strong id="ss"></strong>
+</body>
+<script type="text/javascript">
+	var aSpan=document.getElementsByTagName('span');
+	var Ss=document.getElementById('ss');
+	var arr=['极差','一般','不错','推荐','力荐']
+	var But=true;
+	for (var i = 0; i < aSpan.length; i++) {
+		aSpan[i].index=i;
+		aSpan[i].onmouseover=function(){
+			for (var j = 0; j < this.index; j++) {
+				aSpan[j].style.color='red'
+				if (this.index<2) {aSpan[j].style.color='gray'}
+			}
+			this.style.color='red';
+			if (this.index<2) {this.style.color='gray'}
+			Ss.innerHTML=arr[this.index];
+		}
+		aSpan[i].onclick=function(){
+			// return false;
+			But=false;
+			for (var k = 0; k < aSpan.length; k++) {
+				aSpan[k].className='iconfont icon-wujiaoxing'
+			}
+			for (var j = 0; j < this.index; j++) {
+				aSpan[j].className='add iconfont icon-wujiaoxing';
+				if (this.index<2) {aSpan[j].className='addgray iconfont icon-wujiaoxing';}
+			}
+			this.className='add iconfont icon-wujiaoxing';
+			if (this.index<2) {this.className='addgray iconfont icon-wujiaoxing';}
+			Ss.innerText=arr[this.index];	
+		}
+		aSpan[i].onmouseout=function(){
+			for (var j = 0; j <aSpan.length; j++) {
+				aSpan[j].style.color='';
+				if (But) {Ss.innerHTML='';}
+				
+
+			}	
+		}
+	}
+</script>
+</html>
